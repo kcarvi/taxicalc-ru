@@ -1,0 +1,206 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Taxi Fare Calculator</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+  <script src="https://maps.googleapis.com/maps/api/js?key=KEY&libraries=geometry,places&language=ru-RU"></script>
+  <script src="script.js"></script>
+
+
+
+</head>
+<body>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8">
+
+        <!-- КАЛЬКУЛЯТОР -->
+        <div class="calc-fields">
+          
+          <div class="row">
+            <div class="col-12 col-md-6">
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <label  class="input-group-text" for="startPlace">Откуда:</label>
+                </div>
+                <input class="form-control" id="startPlace" name="startPlace" placeholder="Адрес или название..." >
+              </div>
+            </div>
+            <div class="col-12 col-md-6">
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <label class="input-group-text" for="endPlace">Куда:</label>
+                </div>
+                <input type="text" class="form-control" id="endPlace" name="endPlace" placeholder="Адрес или название..." >
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12 col-md-12">
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <label class="input-group-text" for="сar-class">Класс автомобиля:</label>
+                </div>
+                <select class="custom-select" id="сar-class" name="сar-class">
+                  <option value="standart">стандарт</option>
+                  <option value="comfort">комфорт</option>
+                  <option value="vip">вип</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12 col-md-4">
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <label class="input-group-text" for="meeting">Встреча с табличкой:</label>
+                </div>
+                <div class="input-group-append">
+                  <div class="input-group-text">
+                    <input type="checkbox" id="meeting" name="meeting">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-12 col-md-4">
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <label class="input-group-text" for="return">Встреча по возврату:</label>
+                </div>
+                <div class="input-group-append">
+                  <div class="input-group-text">
+                    <input type="checkbox" id="return" name="return">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-12 col-md-4">
+              <div class="input-group mb-3">
+                <input type="button" class="btn btn-info w-100" id="calc" value="Рассчитать">
+              </div>
+            </div>
+          </div>
+
+        <div id="price_for_selected" class="alert alert-info"></div>
+
+
+        <!-- ЗАКАЗ -->
+
+        <div class="order-fileds">
+          <div class="row">
+            <div class="col-12 col-md-6">
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <label class="input-group-text" for="name">Введите имя: *</label>
+                </div>
+                <input type="text" class="form-control" id="name" name="name" >
+              </div>
+            </div>
+            <div class="col-12 col-md-6">
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <label class="input-group-text" for="number">Номер телефона: *</label>
+                </div>
+                <input type="text" class="form-control" id="number" name="number" >
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12 col-md-6">
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <label class="input-group-text" for="date">Дата: *</label>
+                </div>
+                <input type="date" class="form-control" id="date" name="date" >
+              </div>
+            </div>
+            <div class="col-12 col-md-6">
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <label class="input-group-text" for="time">Время: *</label>
+                </div>
+                <input type="time" class="form-control" id="time" name="time" >
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12 col-md-6">
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <label class="input-group-text" for="seats">Количество мест: *</label>
+                </div>
+                <input type="number" class="form-control" id="seats" name="seats" >
+              </div>
+            </div>
+            <div class="col-12 col-md-6">
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <label class="input-group-text" for="suitcases">Чемоданы:</label>
+                </div>
+                <input type="number" class="form-control" id="suitcases" name="suitcases" >
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12 col-md-6">
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <label class="input-group-text" for="child">Количество детей: *</label>
+                </div>
+                <input type="number" class="form-control" id="child" name="child" >
+              </div>
+            </div>
+            <div class="col-12 col-md-6">
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <label class="input-group-text" for="child-seats">Детские кресла:</label>
+                </div>
+                <input type="number" class="form-control" id="child-seats" name="child-seats" >
+              </div>
+            </div>
+          </div>
+
+
+          <div class="row">
+            <div class="col-12 col-md-6">
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <label class="input-group-text" for="privacy">
+                    <a title="Политика конфеденциальности" href="#" target="_blank" rel="noopener noreferrer">
+                      <small>Согласен на обработку персональных данных</small>
+                    </a>
+                  </label>
+                </div>
+                <div class="input-group-append">
+                  <div class="input-group-text">
+                    <input type="checkbox" id="privacy" name="privacy" checked> 
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-12 col-md-6">
+              <div class="input-group mb-3">
+                <input type="button" class="btn btn-success w-100" id="order" value="Заказать">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        </div>
+      </div>
+
+      <div class="col-12 col-md-4">
+        <div id="map_canvas" style="min-height: 470px;"></div>
+      </div>
+
+    </div>
+  </div>
+
+</body>
+</html>
